@@ -1,11 +1,11 @@
 #!/usr/bin/python2.7
-
-import json, os, sys, boto3
+import boto3
+import json, os, sys
 from datetime import datetime, timedelta
 from optparse import OptionParser
 
 class Monitor(object):
-    difhourmin = 10
+    difhourmin = 5
     client = []
     instance = ''
 
@@ -44,8 +44,8 @@ class Monitor(object):
                     'Value': dimension['Dimensions'][0]['Value']
                 },
             ],
-            StartTime = datetime.now() - timedelta(minutes = (self.difhourmin + 10)),
-            EndTime = datetime.now() - timedelta(minutes = (self.difhourmin + 5)),
+            StartTime = datetime.now() - timedelta(minutes = (self.difhourmin + 5)),
+            EndTime = datetime.now() - timedelta(minutes = (self.difhourmin)),
             Period = 300,
             Statistics = ['Average'],
             Unit = 'Percent'
@@ -74,7 +74,7 @@ def main():
             print("CPU %3.2f is OK" % float(metric))
             sys.exit(0)
     except Exception as e:
-        print("UNKNOWN")
+        print("UNKNOWN : {0}".format(e))
         sys.exit(3)
 
 if __name__ == '__main__':
