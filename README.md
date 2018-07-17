@@ -19,6 +19,17 @@ define service{
         check_command           check_aws_cpu
         }
 ```
+
+host definition
+```
+define host{
+        use                     [Template_host]
+        host_name               [Host_tag]
+        alias                   [InstanceId]
+        address                 [IP]
+}
+```
+
 LICENSE
 
 This source files are made available under the terms of the GNU Affero General Public License (GNU AGPLv3).
