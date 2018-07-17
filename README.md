@@ -30,6 +30,13 @@ define host{
 }
 ```
 
+Keys setup: on file: resource.cfg
+```
+$AWSKEY$=[KEY]
+$AWSSECRET$=[SECRET]
+$AWSREGION$=[REGION]
+```
+
 LICENSE
 
 This source files are made available under the terms of the GNU Affero General Public License (GNU AGPLv3).
