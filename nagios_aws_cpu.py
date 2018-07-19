@@ -57,8 +57,8 @@ def main():
     parser = OptionParser(usage="usage: %prog [options] instance")
     parser.add_option("-c", "--critica", dest="critical", default=60, help="Critical per cent")
     parser.add_option("-w", "--warning", dest="warning", default=40, help="Warning per cent")
-    parser.add_option("-k", "--key", dest="key", default=40, help="AWS Key")
-    parser.add_option("-s", "--secret", dest="secret", default=40, help="AWS Secret")
+    parser.add_option("-k", "--key", dest="key", help="AWS Key")
+    parser.add_option("-s", "--secret", dest="secret", help="AWS Secret")
     parser.add_option("-r", "--region", dest="region", default='eu-west-1', help="AWS Region")
     (options, args) = parser.parse_args()
     if len(args) != 1:

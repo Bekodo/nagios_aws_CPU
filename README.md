@@ -5,7 +5,7 @@ command definition
 ```
 define  command{
         command_name    check_aws_cpu
-        command_line    $USER4$/nagios_aws_cpu.py -k $USER7$ -s $USER8$ -r $USER9$ $HOSTALIAS$
+        command_line    $USER1$/nagios_aws_cpu.py -k $USER7$ -s $USER8$ -r $USER9$ $HOSTALIAS$
 }
 ```
 
