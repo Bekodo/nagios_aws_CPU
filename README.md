@@ -5,15 +5,14 @@ command definition
 ```
 define  command{
         command_name    check_aws_cpu
-        command_line    $USER4$/nagios_aws_cpu.py $HOSTALIAS$
-
-
+        command_line    $USER4$/nagios_aws_cpu.py -k $USER7$ -s $USER8$ -r $USER9$ $HOSTALIAS$
+}
 ```
 
 service definition
 ```
 define service{
-        use                     email-critical-service ; Inherit values from a template
+        use                     local-service ; Inherit values from a template
         host_name               Host
         service_description     CPU
         check_command           check_aws_cpu
@@ -32,9 +31,9 @@ define host{
 
 Keys setup: on file: resource.cfg
 ```
-$AWSKEY$=[KEY]
-$AWSSECRET$=[SECRET]
-$AWSREGION$=[REGION]
+$USER7$=[KEY]
+$USER8$=[SECRET]
+$USER9$=[REGION]
 ```
 
 LICENSE

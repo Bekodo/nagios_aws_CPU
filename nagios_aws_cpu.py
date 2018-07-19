@@ -9,12 +9,12 @@ class Monitor(object):
     client = []
     instance = ''
 
-    def __init__(self,instance):
+    def __init__(self,instance,key,secret,region):
         self.instance = instance
         self.client = boto3.client('cloudwatch',
-            aws_access_key_id = os.environ.get('$AWSKEY$'),
-            aws_secret_access_key = os.environ.get('$AWSSECRET$'),
-            region_name = os.environ.get('$AWSREGION$')
+            aws_access_key_id = key,
+            aws_secret_access_key = secret,
+            region_name = region
         )
 
     def _setDimensions(self):
@@ -57,12 +57,15 @@ def main():
     parser = OptionParser(usage="usage: %prog [options] instance")
     parser.add_option("-c", "--critica", dest="critical", default=60, help="Critical per cent")
     parser.add_option("-w", "--warning", dest="warning", default=40, help="Warning per cent")
+    parser.add_option("-k", "--key", dest="key", default=40, help="AWS Key")
+    parser.add_option("-s", "--secret", dest="secret", default=40, help="AWS Secret")
+    parser.add_option("-r", "--region", dest="region", default='eu-west-1', help="AWS Region")
     (options, args) = parser.parse_args()
     if len(args) != 1:
         parser.error("incorrect number of arguments")
 
     try:
-        ClodWatch = Monitor(args[0])
+        ClodWatch = Monitor(args[0],options.key,options.secret,options.region)
         metric = ClodWatch.getMetric()
         if float(metric) > float(options.critical):
             print("CPU %3.2f is CRITICAL" % float(metric))
