@@ -68,13 +68,13 @@ def main():
         ClodWatch = Monitor(args[0],options.key,options.secret,options.region)
         metric = ClodWatch.getMetric()
         if float(metric) > float(options.critical):
-            print("CPU %3.2f is CRITICAL" % float(metric))
+            print("CPU %.2f is CRITICAL" % float(metric))
             sys.exit(2)
         if float(metric) > float(options.warning):
-            print("CPU %3.2f is WARNING" % float(metric))
+            print("CPU %.2f is WARNING" % float(metric))
             sys.exit(1)
         if float(metric) < float(options.warning):
-            print("CPU %3.2f is OK" % float(metric))
+            print("CPU %.2f is OK" % float(metric))
             sys.exit(0)
     except Exception as e:
         print("UNKNOWN : {0}".format(e))
