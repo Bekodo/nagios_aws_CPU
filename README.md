@@ -5,7 +5,12 @@ command definition
 ```
 define  command{
         command_name    check_aws_cpu
-        command_line    $USER1$/nagios_aws_cpu.py -k $USER7$ -s $USER8$ -r $USER9$ $HOSTALIAS$
+        command_line    $USER1$/nagios_aws_cpu.py -k $USER7$ -s $USER8$ -r $USER9$ -t EC2 $HOSTALIAS$
+}
+
+define  command{
+        command_name    check_aws_cpu_rds
+        command_line    $USER1$/nagios_aws_cpu.py -k $USER7$ -s $USER8$ -r $USER9$ -t RDS $ARG1$
 }
 ```
 
@@ -17,6 +22,13 @@ define service{
         service_description     CPU
         check_command           check_aws_cpu
         }
+        
+define service{
+        use                     local-service ; Inherit values from a template
+        host_name               Host
+        service_description     CPU
+        check_command           check_aws_cpu_rds![rds_instance]
+}
 ```
 
 host definition
