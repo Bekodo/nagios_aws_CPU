@@ -5,12 +5,12 @@ command definition
 ```
 define  command{
         command_name    check_aws_cpu
-        command_line    $USER1$/nagios_aws_cpu.py -k $USER7$ -s $USER8$ -r $USER9$ -t EC2 $HOSTALIAS$
+        command_line    $USER1$/check_aws_cpu.py -k $USER7$ -s $USER8$ -r $USER9$ -t EC2 $HOSTALIAS$
 }
 
 define  command{
         command_name    check_aws_cpu_rds
-        command_line    $USER1$/nagios_aws_cpu.py -k $USER7$ -s $USER8$ -r $USER9$ -t RDS $ARG1$
+        command_line    $USER1$/check_aws_cpu.py -k $USER7$ -s $USER8$ -r $USER9$ -t RDS $ARG1$
 }
 ```
 
